@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AP Biology Study Hub</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <aside class="sidebar">
+        <div class="site-title">
+            <div class="title-mark">AB</div>
+            <div>
+                <h1>AP Biology</h1>
+                <p>Study Hub</p>
+            </div>
+        </div>
+
+        <nav>
+            <button class="nav-item active" onclick="showPage('dashboard', this)">
+                Dashboard
+            </button>
+
+            <button class="nav-item" onclick="showPage('units', this)">
+                Units
+            </button>
+
+            <button class="nav-item" onclick="showPage('questions', this)">
+                Question Bank
+            </button>
+
+            <button class="nav-item" onclick="showPage('flashcards', this)">
+                Flashcards
+            </button>
+
+            <button class="nav-item" onclick="showPage('timer', this)">
+                Study Timer
+            </button>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <button class="theme-button" onclick="toggleDarkMode()">
+                <span id="themeText">Dark mode</span>
+            </button>
+
+            <p class="sidebar-note">Built for AP Biology review</p>
+        </div>
+    </aside>
+
+
+    <main class="main">
+
+        <!-- DASHBOARD -->
+        <section id="dashboard" class="page active-page">
+
+            <div class="topbar">
+                <div>
+                    <p class="eyebrow">AP Biology</p>
+                    <h2>Keep moving forward.</h2>
+                    <p class="subtitle">
+                        Review concepts, practice questions, and keep track of your progress.
+                    </p>
+                </div>
+
+                <div class="date-box" id="todayDate"></div>
+            </div>
+
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <p>Units completed</p>
+                    <strong id="unitsCompleted">0</strong>
+                    <span>out of 8</span>
+                </div>
+
+                <div class="stat-card">
+                    <p>Questions answered</p>
+                    <strong id="questionsAnswered">0</strong>
+                    <span>practice questions</span>
+                </div>
+
+                <div class="stat-card">
+                    <p>Accuracy</p>
+                    <strong id="accuracy">0%</strong>
+                    <span>overall</span>
+                </div>
+
+                <div class="stat-card">
+                    <p>Study time</p>
+                    <strong id="studyTime">0</strong>
+                    <span>minutes</span>
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-grid">
+
+                <div class="card progress-card">
+                    <div class="card-heading">
+                        <div>
+                            <p class="eyebrow">Your progress</p>
+                            <h3>AP Biology</h3>
+                        </div>
+
+                        <span id="progressPercent">0%</span>
+                    </div>
+
+                    <div class="progress-bar">
+                        <div id="overallProgress"></div>
+                    </div>
+
+                    <p class="small-text">
+                        Complete units and practice questions to build your progress.
+                    </p>
+                </div>
+
+
+                <div class="card recommendation">
+                    <p class="eyebrow">For today</p>
+                    <h3>Review cellular energetics</h3>
+
+                    <p>
+                        Focus on enzymes, photosynthesis, cellular respiration,
+                        and how cells transfer energy.
+                    </p>
+
+                    <button class="primary-button" onclick="openUnit(3)">
+                        Review Unit 3
+                    </button>
+                </div>
+
+            </div>
+
+
+            <div class="card recent-section">
+                <div class="card-heading">
+                    <div>
+                        <p class="eyebrow">Quick review</p>
+                        <h3>AP Biology essentials</h3>
+                    </div>
+                </div>
+
+                <div class="quick-grid">
+
+                    <div class="quick-item">
+                        <span>01</span>
+                        <div>
+                            <h4>Water</h4>
+                            <p>Polarity, hydrogen bonding, cohesion and specific heat.</p>
+                        </div>
+                    </div>
+
+                    <div class="quick-item">
+                        <span>02</span>
+                        <div>
+                            <h4>Enzymes</h4>
+                            <p>Biological catalysts that lower activation energy.</p>
+                        </div>
+                    </div>
+
+                    <div class="quick-item">
+                        <span>03</span>
+                        <div>
+                            <h4>DNA</h4>
+                            <p>Stores genetic information used to make proteins.</p>
+                        </div>
+                    </div>
+
+                    <div class="quick-item">
+                        <span>04</span>
+                        <div>
+                            <h4>Natural selection</h4>
+                            <p>Heritable traits that increase reproductive success become more common.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- UNITS -->
+        <section id="units" class="page">
+
+            <div class="page-header">
+                <p class="eyebrow">Course content</p>
+                <h2>AP Biology Units</h2>
+                <p>
+                    Work through the eight major AP Biology units.
+                </p>
+            </div>
+
+            <div class="units-grid" id="unitsGrid"></div>
+
+        </section>
+
+
+        <!-- SINGLE UNIT -->
+        <section id="unit-detail" class="page">
+
+            <button class="back-button" onclick="showPage('units')">
+                ← Back to units
+            </button>
+
+            <div id="unitContent"></div>
+
+        </section>
+
+
+        <!-- QUESTIONS -->
+        <section id="questions" class="page">
+
+            <div class="page-header">
+                <p class="eyebrow">Practice</p>
+                <h2>Question Bank</h2>
+                <p>
+                    Test yourself using AP Biology-style questions.
+                </p>
+            </div>
+
+            <div class="question-controls">
+                <select id="unitFilter" onchange="renderQuestions()">
+                    <option value="all">All units</option>
+                    <option value="1">Unit 1</option>
+                    <option value="2">Unit 2</option>
+                    <option value="3">Unit 3</option>
+                    <option value="4">Unit 4</option>
+                    <option value="5">Unit 5</option>
+                    <option value="6">Unit 6</option>
+                    <option value="7">Unit 7</option>
+                    <option value="8">Unit 8</option>
+                </select>
+
+                <span id="questionCount"></span>
+            </div>
+
+            <div id="questionContainer"></div>
+
+        </section>
+
+
+        <!-- FLASHCARDS -->
+        <section id="flashcards" class="page">
+
+            <div class="page-header">
+                <p class="eyebrow">Active recall</p>
+                <h2>Flashcards</h2>
+                <p>
+                    Try to answer before revealing the definition.
+                </p>
+            </div>
+
+            <div class="flashcard-area">
+
+                <div class="flashcard" onclick="flipCard()">
+
+                    <div class="flashcard-inner">
+
+                        <div class="flashcard-front">
+                            <span id="cardNumber">1 / 10</span>
+                            <h3 id="flashQuestion">What is ATP?</h3>
+                            <p>Click to reveal the answer</p>
+                        </div>
+
+                        <div class="flashcard-back">
+                            <span>Answer</span>
+                            <h3 id="flashAnswer">
+                                ATP is the main short-term energy-carrying molecule used by cells.
+                            </h3>
+                            <p>Click to return</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="flash-buttons">
+                    <button onclick="previousCard()">Previous</button>
+                    <button class="primary-button" onclick="nextCard()">Next</button>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- TIMER -->
+        <section id="timer" class="page">
+
+            <div class="page-header">
+                <p class="eyebrow">Focus session</p>
+                <h2>Study Timer</h2>
+                <p>
+                    Use this for focused AP Biology study sessions.
+                </p>
+            </div>
+
+            <div class="timer-card">
+
+                <div id="timerDisplay">25:00</div>
+
+                <div class="timer-buttons">
+                    <button onclick="startTimer()" class="primary-button">
+                        Start
+                    </button>
+
+                    <button onclick="pauseTimer()">
+                        Pause
+                    </button>
+
+                    <button onclick="resetTimer()">
+                        Reset
+                    </button>
+                </div>
+
+                <div class="timer-presets">
+                    <button onclick="setTimer(25)">25 min</button>
+                    <button onclick="setTimer(45)">45 min</button>
+                    <button onclick="setTimer(60)">60 min</button>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
